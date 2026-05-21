@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wild Code Official Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      /* --- Global Styles & Matrix Aesthetic --- */
+      body {
+        background-color: #020712;
+        background-image: 
+          linear-gradient(rgba(2, 7, 18, 0.92), rgba(3, 10, 24, 0.96)),
+          radial-gradient(#0055ff 1px, transparent 0),
+          radial-gradient(#00ffcc 1px, transparent 0);
+        background-size: 100% 100%, 40px 40px, 30px 30px;
+        background-position: 0 0, 0 0, 15px 15px;
+        color: #cbd5e1; /* Brighter off-white for excellent readability */
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.7;
+        margin: 0;
+        padding: 20px 20px 160px 20px; /* Space for the floating dock */
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* --- Professional Content Cards --- */
+      .section-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(0, 85, 255, 0.15);
+        border-radius: 16px;
+        padding: 30px;
+        margin-bottom: 40px;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo-container {
+        text-align: center;
+        margin: 20px 0 40px 0;
+      }
+
+      .logo-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0;
+        box-shadow: none !important;
+      }
+
+      /* --- Typography Layout --- */
+      h2 {
+        color: #00ffcc;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+        margin-top: 0;
+        margin-bottom: 25px;
+        border-bottom: 2px solid rgba(0, 255, 204, 0.1);
+        padding-bottom: 10px;
+      }
+      
+      h3 { 
+        color: #ffffff;
+        font-size: 1.4rem; 
+        margin-top: 35px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+      
+      h3::before {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 18px;
+        background: #0055ff;
+        margin-right: 10px;
+        border-radius: 2px;
+      }
+
+      h4 { 
+        color: #00ffcc;
+        font-size: 1.3rem; 
+        margin-top: 25px;
+        margin-bottom: 15px;
+      }
+
+      p {
+        margin-bottom: 20px;
+        color: #94a3b8; /* Calmed down body text color */
+      }
+      
+      b, strong {
+        color: #ffffff;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, #0055ff, #00ffcc, #0055ff, transparent);
+        margin: 40px 0;
+      }
+
+      /* --- Premium Media Displays --- */
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        margin: 15px 0;
+      }
+      
+      img:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 12px 25px rgba(0, 85, 255, 0.3);
+      }
+
+      /* --- Grid & Lists Refinement --- */
+      .services-group p {
+        background: rgba(0, 85, 255, 0.03);
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 85, 255, 0.08);
+      }
+
+      .feature-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 15px;
+        padding: 0;
+        margin: 20px 0;
+      }
+
+      .feature-item {
+        background: rgba(0, 255, 204, 0.03);
+        border: 1px solid rgba(0, 255, 204, 0.1);
+        padding: 15px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        color: #e2f0ff;
+        font-weight: 500;
+      }
+
+      .feature-item span {
+        color: #00ffcc;
+        margin-right: 12px;
+        font-size: 1.2rem;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+        padding: 0;
+        list-style: none;
+      }
+      
+      .project-card {
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        background: rgba(0, 85, 255, 0.03);
+        border-color: rgba(0, 85, 255, 0.3);
+      }
+
+      .project-card b {
+        font-size: 1.2rem;
+        color: #00ffcc;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      /* --- Dynamic FAQ Styles --- */
+      .faq-item {
+        margin-bottom: 25px;
+        background: rgba(255,255,255,0.01);
+        padding: 15px 20px;
+        border-radius: 8px;
+        border-left: 3px solid #0055ff;
+      }
+
+      .faq-question {
+        color: #ffffff;
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+
+      .faq-answer {
+        color: #94a3b8;
+        margin: 0;
+      }
+
+      /* --- Interactive Buttons & Overlay Systems --- */
+      .cta-wrapper {
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      #formToggleBtn {
+        background: linear-gradient(135deg, #0055ff, #00ffcc);
+        color: #020712;
+        font-weight: 700;
+        border: none;
+        padding: 18px 45px;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 5px 20px rgba(0, 255, 204, 0.3);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        letter-spacing: 1px;
+        display: inline-block;
+      }
+
+      #formToggleBtn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 255, 204, 0.6);
+      }
+
+      #projectFormContainer {
+        display: none;
+        background: #040e22;
+        border: 1px solid #00ffcc;
+        padding: 35px;
+        border-radius: 16px;
+        box-shadow: 0 0 40px rgba(0, 255, 204, 0.15);
+        margin: 30px 0;
+        animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-15px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      #projectFormContainer label {
+        display: block;
+        margin-bottom: 8px;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      #projectFormContainer input, 
+      #projectFormContainer textarea {
+        width: 100%;
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(0, 85, 255, 0.3);
+        border-radius: 8px;
+        color: #fff;
+        box-sizing: border-box;
+        margin-bottom: 25px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+      }
+
+      #projectFormContainer input:focus, 
+      #projectFormContainer textarea:focus {
+        border-color: #00ffcc;
+        outline: none;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      #projectFormContainer button[type="submit"] {
+        background: #00ffcc;
+        color: #020712;
+        border: none;
+        padding: 16px 35px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        width: 100%;
+      }
+
+      #projectFormContainer button[type="submit"]:hover {
+        background: #00e6b8;
+        transform: translateY(-1px);
+      }
+
+      /* --- Floating Communications Dock --- */
+      .comm-dock {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(2, 7, 18, 0.85);
+        backdrop-filter: blur(15px);
+        border-top: 1px solid rgba(0, 255, 204, 0.15);
+        padding: 16px 20px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        z-index: 999;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .comm-btn {
+        flex: 1;
+        max-width: 180px;
+        text-align: center;
+        padding: 14px 10px;
+        border-radius: 10px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.05rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .comm-btn:hover {
+        transform: translateY(-3px);
+      }
+
+      .btn-whatsapp { background-color: #21b853; box-shadow: 0 4px 15px rgba(33, 184, 83, 0.2); }
+      .btn-call { background-color: #0055ff; box-shadow: 0 4px 15px rgba(0, 85, 255, 0.2); }
+      .btn-mail { background-color: #dc3545; box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2); }
+
+      /* --- Studio Footer --- */
+      footer {
+        text-align: center;
+        padding: 40px 0;
+        margin-top: 40px;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        color: #475569;
+        font-size: 0.95rem;
+      }
+      
+      footer p {
+        margin: 5px 0;
+        color: #64748b;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="logo-container">
+      <a href="https://ibb.co/nqXSZ0G4"><img src="https://i.ibb.co/tw05khGn/1779331928462.png" alt="WildCode Logo" border="0"></a>
+    </div>
+    
+    <div class="section-card">
+      <h2>ABOUT WILDCODE</h2>
+      <a href="https://imgbb.com/"><img src="https://i.ibb.co/hRTKv85G/istockphoto-1435220822-612x612.jpg" alt="About Studio Showcase" border="0"></a>
+      <p><b>WildCode</b> is a web development brand focused on building clean, modern, and user-friendly websites for businesses, entrepreneurs, and creators. We combine strong design with smooth functionality to create websites that not only look professional but also perform well across all devices.</p>
+    </div>
+    
+    <div class="section-card services-group">
+      <h2>OUR SERVICES</h2>
+      
+      <h3>Web Designing</h3>
+      <p>
+        <a href="https://ibb.co/JRBSFtHt"><img src="https://i.ibb.co/SXsZ7yBy/web-designing-1024x683.jpg" alt="Web Designing Layouts" border="0"></a><br>
+        We create modern, visually appealing, and fully customized website designs tailored to your business goals and brand identity. Every design is carefully crafted to give your business a professional online presence that attracts visitors and builds trust with customers.
+      </p>
+      
+      <h3>Responsive Development</h3>
+      <p>
+        <a href="https://ibb.co/YF2crJWD"><img src="https://i.ibb.co/FL65PcWs/A-Complete-Guide-to-Responsive-Web-Development-in-2023-2.jpg" alt="Responsive Development Multi-view" border="0"></a><br>
+        Our websites are built to work perfectly across all devices, including phones, tablets, layouts, and desktops. We focus on smooth performance, clean layouts, and user-friendly experiences to ensure your website looks professional everywhere.
+      </p>
+      
+      <h3>Landing Pages</h3>
+      <p>
+        <a href="https://ibb.co/CXWjx2t"><img src="https://i.ibb.co/S1Jkqrx/Landing-Page-Examples.png" alt="High Conversion Landing Designs" border="0"></a><br>
+        We design high-converting landing pages that are built to capture attention, promote services, and turn visitors into customers. Each landing page is designed with modern layouts, strong visuals, and clear calls-to-action for better results.
+      </p>
+      
+      <h3>Business Websites</h3>
+      <p>
+        <a href="https://ibb.co/JwhYHgkC"><img src="https://i.ibb.co/Kp1tWSym/Creating-Visually-Stunning-and-Functional-Business-Websites.jpg" alt="Enterprise Business Systems" border="0"></a><br>
+        We build professional business websites that help companies establish credibility, attract customers, and grow online. Our websites are designed to showcase your services clearly while giving visitors a smooth and engaging experience.
+      </p>
+      
+      <h3>Portfolio Websites</h3>
+      <p>
+        <a href="https://imgbb.com/"><img src="https://i.ibb.co/mrHps7mq/images-39.jpg" alt="Creative Design Portfolios" border="0"></a><br>
+        Showcase your work, projects, and skills with a clean and modern portfolio website designed to leave a strong impression. Perfect for developers, creatives, photographers, designers, and professionals who want to stand out online.
+      </p>
+      
+      <h3>Website Maintenance</h3>
+      <p>
+        <a href="https://imgbb.com/"><img src="https://i.ibb.co/994SnCFx/images-37.jpg" alt="System Infrastructure Maintenance" border="0"></a><br>
+        We provide website maintenance services to keep your website secure, updated, fast, and running smoothly. From fixing issues to improving performance, we ensure your website continues to operate professionally at all times.
+      </p>
+       
+      <hr>
+      
+      <h4>Why Choose WildCode?</h4>
+      <div class="feature-list">
+        <div class="feature-item"><span>✔</span> Modern and clean website designs</div>
+        <div class="feature-item"><span>✔</span> Mobile-friendly layouts</div>
+        <div class="feature-item"><span>✔</span> Fast-loading pages</div>
+        <div class="feature-item"><span>✔</span> Affordable solutions</div>
+        <div class="feature-item"><span>✔</span> Professional support</div>
+        <div class="feature-item"><span>✔</span> Built for performance and growth</div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2>OUR RECENT PROJECTS</h2>
+      <p>Take a look at some of the websites and digital projects we’ve created for businesses and individuals.</p>
+      
+      <ul class="project-grid">
+        <li class="project-card">
+          <b>TECHFLOW</b>
+          <a href="https://ibb.co/1tG8qhzN"><img src="https://i.ibb.co/YFBpkY0S/1779317648987.png" alt="TechFlow Interface"></a>
+        </li>
+        <li class="project-card">
+          <b>GLOW SKIN</b>
+          <a href="https://ibb.co/CsYkC4F2"><img src="https://i.ibb.co/wrP9G81s/1779317658279.png" alt="Glow Skin E-Commerce Layout"></a><br>
+          <a target="_blank" href="https://imgbb.com/" style="font-size:0.8rem; color:#475569; text-decoration:none;">free image hosting api</a>
+        </li>
+        <li class="project-card">
+          <b>FIT LIFE</b>
+          <a href="https://ibb.co/PsFwy7g2"><img src="https://i.ibb.co/hxLDNPVG/1779317666084.png" alt="Fit Life Fitness Hub"></a>
+        </li>
+        <li class="project-card">
+          <b>CREATIVO</b>
+          <a href="https://ibb.co/5h8R9s3b"><img src="https://i.ibb.co/YBkLWfSH/1779317672845.png" alt="Creativo Media Strategy Core"></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section-card">
+      <h2>FAQ</h2>
+      
+      <div class="faq-item">
+        <p class="faq-question"><b>How long does a website take to build?</b></p>
+        <p class="faq-answer">Most websites are completed within a few days depending on the size and features required.</p>
+      </div>
+      
+      <div class="faq-item">
+        <p class="faq-question"><b>Do you make mobile-friendly websites?</b></p>
+        <p class="faq-answer">Yes. Every website is designed to work perfectly on phones, tablets, and desktops.</p>
+      </div>
+      
+      <div class="faq-item">
+        <p class="faq-question"><b>Can you redesign my current website?</b></p>
+        <p class="faq-answer">Yes. We can improve and modernize existing websites.</p>
+      </div>
+      
+      <div class="faq-item">
+        <p class="faq-question"><b>How much does a website cost?</b></p>
+        <p class="faq-answer">Pricing depends on the type of website and features needed.</p>
+      </div>
+      
+      <div class="faq-item">
+        <p class="faq-question"><b>Do you offer website maintenance?</b></p>
+        <p class="faq-answer">Yes. We provide updates, fixes, and maintenance services.</p>
+      </div>
+    </div>
+
+    <div class="section-card" style="border-color: rgba(0, 255, 204, 0.3);">
+      <h2>READY TO BUILD YOUR WEBSITE?</h2>
+      <p>Let <b>WildCode</b> help you create a modern online presence that stands out and delivers results.</p>
+      
+      <div class="cta-wrapper">
+        <button id="formToggleBtn" onclick="toggleProjectForm()">START YOUR PROJECT</button>
+      </div>
+
+      <div id="projectFormContainer">
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="51ade758-8182-4474-a2c8-84bd1fb60c0b">
+          
+          <label for="userName">Name</label>
+          <input type="text" id="userName" name="name" placeholder="Your Name" required>
+          
+          <label for="userEmail">Email</label>
+          <input type="email" id="userEmail" name="email" placeholder="Your Email Address" required>
+          
+          <label for="userMessage">Message</label>
+          <textarea id="userMessage" name="message" rows="5" placeholder="Tell us about your project requirements..." required></textarea>
+          
+          <button type="submit">Submit Form</button>
+        </form>
+      </div>
+
+      <h4 style="color:#ffffff; margin-top:30px;">Contact Us Directly</h4>
+      <p style="margin-bottom:0;">
+        Phone: +27 612832392<br>
+        Email: wildcode008@gmail.com<br>
+        WhatsApp: +27 612832392
+      </p>
+    </div>
+
+    <div class="comm-dock">
+      <a href="https://wa.me/27612832392" class="comm-btn btn-whatsapp" target="_blank">WhatsApp</a>
+      <a href="tel:+27612832392" class="comm-btn btn-call">Call Us</a>
+      <a href="mailto:wildcode008@gmail.com" class="comm-btn btn-mail">Email</a>
+    </div>
+
+    <footer>
+      <p><b>WildCode Developers</b></p>
+      <p>Building modern websites for businesses, creators, and brands.</p>
+      <p>&copy; 2026 WildCode. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function toggleProjectForm() {
+        var formContainer = document.getElementById("projectFormContainer");
+        if (formContainer.style.display === "none" || formContainer.style.display === "") {
+          formContainer.style.display = "block";
+          formContainer.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          formContainer.style.display = "none";
+        }
+      }
+    </script>
+
+  </body>
+</html>
