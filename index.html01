@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wild Code | Elite Web Development & Digital Design Studio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wild Code builds high-performance, ultra-modern, responsive websites for brands, entrepreneurs, and creators. Elevate your digital presence today.">
+    
+    <!-- Open Graph / Social Preview Metadata -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wildcode.co.za/">
+    <meta property="og:title" content="Wild Code | Premium Web Development Studio">
+    <meta property="og:description" content="Clean code. Stunning aesthetics. Elite performance. We build websites that dominate search results and maximize conversions.">
+    <meta property="og:image" content="https://i.ibb.co/tw05khGn/1779331928462.png">
+
+    <!-- Search Verification -->
+    <meta name="google-site-verification" content="A_7FE_Nvq47k6zbuhWZnyFJ-UxYtbaCT1uRiY_MfPVg" />
+    <meta name="google-site-verification" content="90Olse0Gv2p7jjXHzbPtim0IYC_A9bGo-jSfBLe1IUg" />
+    
+    <!-- Google Fonts for High-End Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+      /* --- Design Token System & Custom Reset --- */
+      :root {
+        --bg-dark: #030712;
+        --card-bg: rgba(6, 11, 25, 0.65);
+        --primary: #0055ff;
+        --primary-glow: rgba(0, 85, 255, 0.4);
+        --accent: #00ffcc;
+        --accent-glow: rgba(0, 255, 204, 0.3);
+        --text-main: #e2e8f0;
+        --text-muted: #94a3b8;
+        --font-display: 'Space Grotesk', sans-serif;
+        --font-sans: 'Plus Jakarta Sans', sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.7;
+        padding: 40px 20px 180px 20px;
+        max-width: 1100px;
+        margin: 0 auto;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* --- Performance Optimized Matrix Background Canvas --- */
+      #matrixCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        opacity: 0.18;
+        pointer-events: none;
+      }
+
+      /* --- Premium Cyber-Glass Cards --- */
+      .section-card {
+        background: var(--card-bg);
+        border: 1px solid rgba(0, 85, 255, 0.15);
+        border-radius: 24px;
+        padding: 40px;
+        margin-bottom: 45px;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 
+                    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        transition: border-color 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .section-card:hover {
+        border-color: rgba(0, 255, 204, 0.3);
+        box-shadow: 0 25px 50px rgba(0, 255, 204, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      }
+
+      /* --- Balanced & Background-Free Logo Architecture --- */
+      .logo-container {
+        text-align: center;
+        margin: 40px 0 60px 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .logo-container img {
+        width: 100%;
+        max-width: 100%; /* Dynamically matches internal block width matching other images */
+        height: auto;
+        border-radius: 14px;
+        mix-blend-mode: screen; /* Strips black backgrounds effortlessly */
+        filter: drop-shadow(0 0 20px rgba(0, 85, 255, 0.4));
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .logo-container:hover img {
+        transform: scale(1.03);
+      }
+
+      /* --- Elite Typography Layout --- */
+      h2 {
+        font-family: var(--font-display);
+        color: var(--accent);
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      h2::before {
+        content: '//';
+        color: var(--primary);
+        font-family: var(--font-display);
+        font-weight: 400;
+      }
+      
+      h3 { 
+        font-family: var(--font-display);
+        color: #ffffff;
+        font-size: 1.5rem; 
+        margin-top: 40px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+      
+      h3::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 20px;
+        background: var(--primary);
+        margin-right: 12px;
+        border-radius: 4px;
+        box-shadow: 0 0 10px var(--primary-glow);
+      }
+
+      h4 { 
+        font-family: var(--font-display);
+        color: var(--accent);
+        font-size: 1.4rem; 
+        margin-top: 35px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        margin-bottom: 20px;
+        color: var(--text-muted);
+        font-size: 1.05rem;
+      }
+      
+      b, strong {
+        color: #ffffff;
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--primary), var(--accent), var(--primary), transparent);
+        margin: 50px 0;
+      }
+
+      /* --- Cinematic Media Architecture --- */
+      .img-wrapper {
+        position: relative;
+        overflow: hidden;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        margin: 20px 0;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      
+      .img-wrapper:hover img {
+        transform: scale(1.03);
+      }
+
+      /* --- High-Performance Grids & Feature Lists --- */
+      .services-group .service-block {
+        background: rgba(255, 255, 255, 0.01);
+        padding: 25px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        margin-bottom: 30px;
+        transition: background 0.3s, border-color 0.3s;
+      }
+
+      .services-group .service-block:hover {
+        background: rgba(0, 85, 255, 0.03);
+        border-color: rgba(0, 85, 255, 0.15);
+      }
+
+      /* --- Elite Ultra Pop-Out Feature Component Layout --- */
+      .feature-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin: 35px 0;
+        perspective: 1000px;
+      }
+
+      .feature-item {
+        background: linear-gradient(135deg, rgba(6, 11, 25, 0.8), rgba(10, 20, 45, 0.9));
+        border: 1px solid rgba(0, 255, 204, 0.12);
+        padding: 24px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        color: #e2f0ff;
+        font-weight: 600;
+        font-size: 1.05rem;
+        position: relative;
+        transform-style: preserve-3d;
+        transform: translateZ(0);
+        will-change: transform, box-shadow;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                    box-shadow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                    border-color 0.3s ease;
+      }
+
+      .feature-item:hover {
+        border-color: var(--accent);
+        transform: translateY(-12px) scale(1.05) translateZ(20px);
+        box-shadow: 0 25px 40px rgba(0, 255, 204, 0.18), 
+                    0 0 30px rgba(0, 85, 255, 0.15);
+      }
+
+      .feature-item span {
+        color: var(--accent);
+        margin-right: 16px;
+        font-size: 1.5rem;
+        text-shadow: 0 0 12px var(--accent-glow);
+        transform: translateZ(10px);
+        transition: transform 0.4s ease;
+      }
+      
+      .feature-item:hover span {
+        transform: translateZ(25px) scale(1.1);
+      }
+
+      /* --- Immersive Case Studies / Projects Section --- */
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 30px;
+        list-style: none;
+      }
+
+      @media (max-width: 480px) {
+        .project-grid { grid-template-columns: 1fr; }
+      }
+      
+      .project-card {
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        padding: 24px;
+        border-radius: 18px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .project-card:hover {
+        background: rgba(6, 11, 25, 0.8);
+        border-color: rgba(0, 85, 255, 0.4);
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      }
+
+      .project-card b {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+      }
+
+      /* --- Modern CSS-Grid Accordion FAQ Engine --- */
+      .faq-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .faq-item {
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+
+      .faq-item:hover {
+        border-color: rgba(0, 85, 255, 0.3);
+      }
+
+      .faq-trigger {
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 22px 25px;
+        text-align: left;
+        color: #ffffff;
+        font-family: var(--font-sans);
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .faq-icon {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-right: 2px solid var(--accent);
+        border-bottom: 2px solid var(--accent);
+        transform: rotate(45deg);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        margin-right: 5px;
+      }
+
+      .faq-item.active .faq-icon {
+        transform: rotate(-135deg);
+      }
+
+      .faq-content {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .faq-item.active .faq-content {
+        grid-template-rows: 1fr;
+      }
+
+      .faq-interior {
+        overflow: hidden;
+      }
+
+      .faq-answer {
+        padding: 0 25px 22px 25px;
+        color: var(--text-muted);
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      /* --- Premium Form Systems --- */
+      .cta-wrapper {
+        text-align: center;
+        padding: 25px 0;
+      }
+
+      #formToggleBtn {
+        font-family: var(--font-display);
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: var(--bg-dark);
+        font-weight: 700;
+        border: none;
+        padding: 20px 50px;
+        font-size: 1.25rem;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 255, 204, 0.25);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        letter-spacing: 0.5px;
+      }
+
+      #formToggleBtn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 255, 204, 0.45);
+      }
+
+      #projectFormContainer {
+        display: none;
+        background: #050b18;
+        border: 1px solid var(--accent);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 50px rgba(0, 255, 204, 0.1);
+        margin: 35px 0;
+        animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      #projectFormContainer label {
+        display: block;
+        margin-bottom: 10px;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+      }
+
+      #projectFormContainer input, 
+      #projectFormContainer textarea {
+        width: 100%;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(0, 85, 255, 0.25);
+        border-radius: 10px;
+        color: #fff;
+        box-sizing: border-box;
+        margin-bottom: 25px;
+        font-size: 1rem;
+        font-family: var(--font-sans);
+        transition: border-color 0.2s, background-color 0.2s;
+      }
+
+      #projectFormContainer input:focus, 
+      #projectFormContainer textarea:focus {
+        border-color: var(--accent);
+        outline: none;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      #projectFormContainer button[type="submit"] {
+        font-family: var(--font-display);
+        background: var(--accent);
+        color: var(--bg-dark);
+        border: none;
+        padding: 18px 35px;
+        font-size: 1.15rem;
+        font-weight: 700;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        width: 100%;
+        letter-spacing: 0.5px;
+      }
+
+      #projectFormContainer button[type="submit"]:hover {
+        background: #00e6b8;
+        transform: translateY(-1px);
+      }
+
+      /* --- Fixed Glassmorphic Communication Dock --- */
+      .comm-dock {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(3, 7, 18, 0.65);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        z-index: 999;
+        box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.6);
+      }
+
+      .comm-btn {
+        flex: 1;
+        max-width: 200px;
+        text-align: center;
+        padding: 16px 15px;
+        border-radius: 14px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.05rem;
+        font-family: var(--font-display);
+        letter-spacing: 0.5px;
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+      }
+
+      .comm-btn:hover {
+        transform: translateY(-4px);
+      }
+
+      .btn-whatsapp { background-color: #1ea94b; box-shadow: 0 8px 20px rgba(30, 169, 75, 0.25); }
+      .btn-call { background-color: #004fe5; box-shadow: 0 8px 20px rgba(0, 79, 229, 0.25); }
+      .btn-mail { background-color: #ce2c3c; box-shadow: 0 8px 20px rgba(206, 44, 60, 0.25); }
+
+      /* --- Studio Footer Architecture --- */
+      footer {
+        text-align: center;
+        padding: 60px 0;
+        margin-top: 60px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      
+      footer p {
+        margin: 6px 0;
+        color: var(--text-muted);
+      }
+
+      footer .brand-signature {
+        font-family: var(--font-display);
+        color: #ffffff;
+        font-size: 1.15rem;
+        letter-spacing: 0.5px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Cyber matrix overlay container -->
+    <canvas id="matrixCanvas"></canvas>
+    
+    <!-- Unified Layout Sized Logo Container -->
+    <div class="section-card" style="padding: 0; border: none; background: none; box-shadow: none; margin-bottom: 20px;">
+      <div class="logo-container">
+        <img src="https://i.ibb.co/tw05khGn/1779331928462.png" alt="WildCode Elite Systems Logo">
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2>ABOUT WILDCODE</h2>
+      <div class="img-wrapper">
+        <img src="https://i.ibb.co/hRTKv85G/istockphoto-1435220822-612x612.jpg" alt="WildCode Production Lab Environment">
+      </div>
+      <p><b>WildCode</b> is an elite web development studio dedicated to engineering high-performance, visually commanding digital platforms for progressive enterprises, innovators, and creators. We combine meticulous architectural engineering with futuristic aesthetics to yield digital environments that execute seamlessly across the matrix of modern screen resolutions.</p>
+    </div>
+    
+    <div class="section-card services-group">
+      <h2>ENGINEERING CAPABILITIES</h2>
+      
+      <div class="service-block">
+        <h3>UI/UX Architecture</h3>
+        <div class="img-wrapper">
+          <img src="https://i.ibb.co/SXsZ7yBy/web-designing-1024x683.jpg" alt="Advanced UI Architectural Design Blueprints">
+        </div>
+        <p>We craft bespoke, immersive user interfaces mapped explicitly to match your operational conversion parameters and corporate aesthetic guidelines. Every deployment delivers instant corporate authority and high-intent customer acquisition paths.</p>
+      </div>
+      
+      <div class="service-block">
+        <h3>Responsive Infrastructure</h3>
+        <div class="img-wrapper">
+          <img src="https://i.ibb.co/FL65PcWs/A-Complete-Guide-to-Responsive-Web-Development-in-2023-2.jpg" alt="Cross-Platform Cross-Device Fluid Adaptations">
+        </div>
+        <p>Engineered to adapt flawlessly across structural variables including mobile nodes, tablets, standard desktop screens, and wide-format monitors. We prioritize raw runtime execution speed and visual stability metrics.</p>
+      </div>
+      
+      <div class="service-block">
+        <h3>Conversion Landing Matrices</h3>
+        <div class="img-wrapper">
+          <img src="https://i.ibb.co/S1Jkqrx/Landing-Page-Examples.png" alt="High-Performance Dynamic Capture Systems">
+        </div>
+        <p>Precision single-page execution structures optimized to command attention and transform raw traffic protocols into dedicated, retained high-value consumer acquisitions using strict user flow engineering.</p>
+      </div>
+      
+      <div class="service-block">
+        <h3>Enterprise Business Nodes</h3>
+        <div class="img-wrapper">
+          <img src="https://i.ibb.co/Kp1tWSym/Creating-Visually-Stunning-and-Functional-Business-Websites.jpg" alt="Secure Scalable Commercial Portals">
+        </div>
+        <p>Highly robust corporate configurations deployed to consolidate professional prestige, secure transaction opportunities, and scale computational structures in perfect alignment with market demand.</p>
+      </div>
+      
+      <div class="service-block">
+        <h3>Creative Portfolios</h3>
+        <div class="img-wrapper">
+          <img src="https://i.ibb.co/mrHps7mq/images-39.jpg" alt="Creative Content Production Layouts">
+        </div>
+        <p>Immersive interactive showrooms tailored for technical operatives, designers, photographers, and high-tier professionals requiring distinct separation from standard industrial layouts.</p>
+      </div>
+      
+      <div class="service-block">
+        <h3>Core Infrastructure Support</h3>
+        <div class="img-wrapper">
+          <img src="https://i.ibb.co/994SnCFx/images-37.jpg" alt="System Security Configuration Maintenance Protocols">
+        </div>
+        <p>Continuous validation, patch orchestration, security monitoring, and server runtime enhancements to ensure your digital real estate operates without disruption or security vulnerabilities.</p>
+      </div>
+       
+      <hr>
+      
+      <h4>Core Strategic Advantages</h4>
+      <div class="feature-list">
+        <div class="feature-item"><span>✔</span> Modern &amp; Clean Layout Architecture</div>
+        <div class="feature-item"><span>✔</span> Adaptive Cross-Platform Interface</div>
+        <div class="feature-item"><span>✔</span> Optimized Runtime Core Performance</div>
+        <div class="feature-item"><span>✔</span> Transparent Value-Driven Investment</div>
+        <div class="feature-item"><span>✔</span> Direct High-Tier Engineering Support</div>
+        <div class="feature-item"><span>✔</span> Scalable Multi-Phase Growth Node</div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2>ACTIVE DEPLOYMENTS</h2>
+      <p>Examine a selection of production environments engineered to maximize commercial visibility and system conversion thresholds.</p>
+      
+      <ul class="project-grid">
+        <li class="project-card">
+          <b>TECHFLOW ENGINE</b>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/YFBpkY0S/1779317648987.png" alt="TechFlow Core Cloud Infrastructure Interface">
+          </div>
+        </li>
+        <li class="project-card">
+          <b>GLOW SKIN EC</b>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/wrP9G81s/1779317658279.png" alt="Glow Skin Luxury E-Commerce Architecture">
+          </div>
+        </li>
+        <li class="project-card">
+          <b>FIT LIFE HUB</b>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/hxLDNPVG/1779317666084.png" alt="Fit Life Digital Health Management Dashboard">
+          </div>
+        </li>
+        <li class="project-card">
+          <b>CREATIVO MEDIA</b>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/YBkLWfSH/1779317672845.png" alt="Creativo Media Cross-Channel Marketing Network">
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section-card">
+      <h2>FREQUENTLY ASKED QUESTIONS</h2>
+      
+      <div class="faq-wrapper">
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span>What is the standard development turnaround timeline?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-interior">
+              <p class="faq-answer">Most digital real estate deployments are fully validated, compiled, and set live within a window of several business days, heavily reliant on targeted project scope complexity and integrations.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span>Are layouts fundamentally responsive for mobile devices?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-interior">
+              <p class="faq-answer">Absolutely. Every system we launch goes through rigid verification procedures on dynamic mobile devices, desktop platforms, and tablet views to guarantee native performance.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span>Can you modernize an existing legacy website framework?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-interior">
+              <p class="faq-answer">Yes. We specialize in hot-swapping old website codebases with modern server infrastructure and clean CSS layouts without losing historic search engine index data.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span>What are the exact capital requirements for a project build?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-interior">
+              <p class="faq-answer">Investment pricing is variable, calculated based on target operational features, technical integrations, and content layout depths. Contact us directly for a transparent project estimate.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span>Is persistent system optimization and upkeep available?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-interior">
+              <p class="faq-answer">Yes, we provide ongoing maintenance structures to handle server health validation, data compliance patching, content adjustments, and ongoing system speed optimization.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card" style="border-color: rgba(0, 255, 204, 0.4); background: rgba(0, 85, 255, 0.02);">
+      <h2>INITIATE SYSTEM DEPLOYMENT</h2>
+      <p>Partner with <b>WildCode</b> to establish a dominant online presence that translates raw traffic into commercial metrics.</p>
+      
+      <div class="cta-wrapper">
+        <button id="formToggleBtn" onclick="toggleProjectForm()">START YOUR PROJECT</button>
+      </div>
+
+      <div id="projectFormContainer">
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms API Configuration -->
+          <input type="hidden" name="access_key" value="51ade758-8182-4474-a2c8-84bd1fb60c0b">
+          <input type="hidden" name="subject" value="New Elite Project Submission - WildCode">
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+          
+          <label for="userName">Operator Identification / Name</label>
+          <input type="text" id="userName" name="name" placeholder="Your Name" required>
+          
+          <label for="userEmail">Communications Routing / Email Address</label>
+          <input type="email" id="userEmail" name="email" placeholder="Your Email Address" required>
+          
+          <label for="userMessage">Project Operational Parameters</label>
+          <textarea id="userMessage" name="message" rows="5" placeholder="Detail your project goals, required timelines, and technical scope..." required></textarea>
+          
+          <button type="submit">Transmit Blueprint Data</button>
+        </form>
+      </div>
+
+      <h4 style="color:#ffffff; margin-top:40px;">Direct Communication Lines</h4>
+      <p style="margin-bottom:0; font-family: var(--font-display); font-size: 1.1rem; line-height: 1.9;">
+        📞 Phone: <span style="color:#fff;">+27 612832392</span><br>
+        ✉ Email: <span style="color:var(--accent);">wildcode008@gmail.com</span><br>
+        💬 WhatsApp: <span style="color:#fff;">+27 612832392</span>
+      </p>
+    </div>
+
+    <div class="comm-dock">
+      <a href="https://wa.me/27612832392" class="comm-btn btn-whatsapp" target="_blank">WhatsApp</a>
+      <a href="tel:+27612832392" class="comm-btn btn-call">Voice Link</a>
+      <a href="mailto:wildcode008@gmail.com" class="comm-btn btn-mail">Email Desk</a>
+    </div>
+
+    <footer>
+      <p class="brand-signature">WILDCODE ARCHITECTS</p>
+      <p>Building high-performance modern frameworks for businesses, creators, and brands.</p>
+      <p>&copy; 2026 WildCode. Secure Deployment Confirmed.</p>
+    </footer>
+
+    <script>
+      // Matrix Rain Digital Overlay Engine
+      const canvas = document.getElementById('matrixCanvas');
+      const ctx = canvas.getContext('2d');
+
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      const columns = Math.floor(width / 24);
+      const yPositions = Array(columns).fill(0);
+
+      function matrixRain() {
+        ctx.fillStyle = 'rgba(3, 7, 18, 0.06)';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = '#00ffcc';
+        ctx.font = '15px monospace';
+
+        for (let i = 0; i < yPositions.length; i++) {
+          const text = String.fromCharCode(Math.floor(Math.random() * 93) + 33);
+          const x = i * 24;
+          const y = yPositions[i];
+
+          ctx.fillText(text, x, y);
+
+          if (y > height && Math.random() > 0.98) {
+            yPositions[i] = 0;
+          } else {
+            yPositions[i] += 12;
+          }
+        }
+      }
+
+      let interval = setInterval(matrixRain, 33);
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      // Pure UI Accordion Toggle Script
+      function toggleFaq(button) {
+        const item = button.parentElement;
+        item.classList.toggle('active');
+      }
+
+      // Smooth Form Display Router
+      function toggleProjectForm() {
+        var formContainer = document.getElementById("projectFormContainer");
+        if (formContainer.style.display === "none" || formContainer.style.display === "") {
+          formContainer.style.display = "block";
+          formContainer.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          formContainer.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
